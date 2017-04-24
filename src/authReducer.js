@@ -57,10 +57,10 @@ const loginFail = () => ({
 const authReducer = (state={}, action) => {
   switch(action.type){
     case LOGIN_SUCCESS:
-      state = Object.assign({}, state, { user: action.user })
+      state = Object.assign({}, state, { user: action.user, invalidLogin: false })
       break;
     case LOGOUT_SUCCESS:
-      state = Object.assign({}, state, { user: ''})
+      state = Object.assign({}, state, { user: '' })
       break;
     case INVALID_LOGIN:
       state = Object.assign({}, state, { invalidLogin: true })
