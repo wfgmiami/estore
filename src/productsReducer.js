@@ -1,4 +1,4 @@
-import { LOAD_PRODUCTS_SUCCESS, DESTROY_PRODUCT_SUCCESS, POST_PRODUCT_SUCCESS, UNSET_FAVORITE_PRODUCT } from './constants';
+import { LOAD_PRODUCTS_SUCCESS } from './constants';
 import axios from 'axios';
 
 
@@ -8,11 +8,8 @@ const productsReducer = (state=[], action) => {
     case LOAD_PRODUCTS_SUCCESS:
       state = action.products;
       break;
-    case DESTROY_PRODUCT_SUCCESS:
-      state = state.filter( product => product.id !== action.product.id)
-      break;
     default:
-      break;
+      state;
   }
   return state;
 }
@@ -22,36 +19,12 @@ const loadProductSuccess = (products) => ({
     products: products
 })
 
-const destroyProductSuccess = (product) => ({
-  type: DESTROY_PRODUCT_SUCCESS,
-  product: product
-})
-
-
 const loadProducts = () => {
   return (dispatch) =>{
-
-    //return axios.get('/api/products') <--- no need for return Eric!
     axios.get('/api/products')
     .then( response => dispatch(loadProductSuccess(response.data)))
   }
 }
 
-
-const destroyProduct = (product) => {
-  return (dispatch) => {
-    //return axios.delete(`/api/products/${product.id}`)
-    axios.delete(`/api/products/${product.id}`)
-    .then( () => dispatch(destroyProductSuccess(product)))
-  }
-}
-
-const postProduct = (product) => {
-  return (dispatch) => {
-    axios.post('/api/products', product)
-    .then( () => dispatch(loadProducts()))
-  }
-}
-
-export { loadProducts, destroyProduct, postProduct }
+export { loadProducts }
 export default productsReducer;

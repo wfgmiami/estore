@@ -10,32 +10,17 @@ router.get('/products',(req,res,next)=>{
   .catch(next);
 })
 
-router.delete('/products/:id', (req,res,next)=>{
-  Product.destroy({ where: { id: req.params.id }})
-  .then( () => res.sendStatus(204))
-  .catch(next)
-})
-
-router.post('/products',(req,res,next)=>{
-
-  Product.create(req.body)
-  .then(()=> res.redirect('/api/products'))
-  .catch(next);
-})
-
 router.post('/session', (req,res,next)=>{
 
   User.findOne({
     where: { name: req.body.name, password: req.body.password }
   })
   .then( user => {
-
     if(user){
       const token = jwt.encode({ id: user.id },secret);
       return res.send(token)
     }else{
-      return res.status(401).redirect('/')
-      //return res.sendStatus(401);
+      return res.sendStatus(401)
     }
 
   })
@@ -49,8 +34,7 @@ router.get('/session/:token', (req,res,next)=>{
     User.findById(token.id)
     .then( user => {
       if(!user){
-        const errObj = { errMessage: 'User not found. Try again'}
-        return res.status(401).send(errObj)
+        return res.sendStatus(401)
       }
       res.send(user);
     })

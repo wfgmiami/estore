@@ -1,28 +1,32 @@
-const conn = require('./db');
+const conn = require('./conn');
 
-const Product = require('./Product');
-const User = require('./User');
+const User = require( './User' );
+const Product = require( './Product' );
+const Review = require( './Review' );
+const Order = require('./Order' );
+const Category = require( './Category');
+const LineItem = require('./LineItem');
 
-const sync = () =>{
-  return conn.sync({ force: true })
-}
+const seed = require('./Seed')
 
-const names = ['Larry', 'Curly','Moe'];
-const products = ['foo', 'bar', 'bazz'];
-
-const seed = () =>{
-  return sync()
-    .then( () => Promise.all(names.map((name, idx) => User.create({ name, password: products[idx] }))))
-    .then( () => Promise.all(products.map(name => Product.create( { name }))))
-}
-
-User.belongsTo(Product, { as: 'bestProduct' })
-User.belongsTo(Product, { as: 'worstProduct' })
+User.hasMany(Order);
+Category.hasMany(Product);
+// Category.hasMany(Product);
+// Product.belongsToMany(Order, { through: 'LineItems' });
+// Order.belongsToMany(Product, { through: 'LineItems' });
+Order.hasMany(LineItem);
+Product.hasMany(LineItem);
+LineItem.belongsTo(Product);
+LineItem.belongsTo(Order);
 
 module.exports = {
+
   seed,
-  models: {
+  models:{
+    User,
     Product,
-    User
+    Review,
+    Order,
+    Category
   }
 }

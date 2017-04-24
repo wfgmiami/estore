@@ -4,20 +4,22 @@ import { connect } from 'react-redux';
 
 
 
-const LoginForm = ({ login, name, password, onNameChange, onPasswordChange, user, logout }) => {
+const LoginForm = ({ invalidLogin, login, name, password, onNameChange, onPasswordChange, user, logout }) => {
 
  const submitFn = user ? logout : login;
 
  return(
    <div>
+     <h3>Sign In</h3> { user ? `Hello, ${ user.name }` : null }
+     { invalidLogin ? <div style={{ color: 'red' }}>Invalid Login</div> : null }
       <form onSubmit={ submitFn }>
         <div className='form-group'>
           <input className='form-control' placeholder='name' value={ name } onChange={ onNameChange }/>
         </div>
         <div className='form-group'>
-          <input className='form-control' placeholder='password' value={ password } onChange={ onPasswordChange }/>
+          <input className='form-control' type="password" placeholder='password' value={ password } onChange={ onPasswordChange }/>
         </div>
-        <button className='btn btn-primary'>{ user ? `Log Out` : `Log In` }</button>
+        <button className='btn btn-primary'>{ user ? `Sign Out` : `Sign In` }</button>
       </form>
     </div>
  )
@@ -52,8 +54,9 @@ class LoginPage extends Component{
   }
 
   render(){
+
     return(
-      <LoginForm logout={this.props.logout} user={this.props.user} login={this.onLogin} name={this.state.name} password={this.state.password} onNameChange={ this.onNameChange } onPasswordChange={ this.onPasswordChange }/>
+      <LoginForm invalidLogin={this.props.invalidLogin} logout={this.props.logout} user={this.props.user} login={this.onLogin} name={this.state.name} password={this.state.password} onNameChange={ this.onNameChange } onPasswordChange={ this.onPasswordChange }/>
     )
   }
 
@@ -61,7 +64,8 @@ class LoginPage extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    user: state.auth.user
+    user: state.auth.user,
+    invalidLogin: state.auth.invalidLogin
   }
 }
 

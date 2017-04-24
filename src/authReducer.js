@@ -1,12 +1,11 @@
-import { LOGIN_SUCCESS, LOGOUT_SUCCESS } from './constants';
+import { LOGIN_SUCCESS, LOGOUT_SUCCESS, INVALID_LOGIN } from './constants';
 import axios from 'axios';
 
 
 const me = () => {
   return(dispatch)=> {
     const token = localStorage.getItem('token');
-    if(!token)
-      return;
+    if(!token) return
     return axios.get(`/api/session/${token}`)
     .then( response => response.data )
     .then( user => dispatch(loginSuccess(user)))
@@ -14,15 +13,10 @@ const me = () => {
 }
 
 const logout = (user) => {
-  //const token = localStorage.getItem('token');
+  localStorage.setItem('token', '')
   return (dispatch)=>{
     dispatch(logoutSuccess())
-    // return axios.get(`/api/session/${token}`)
-    // .then(response => response.data)
-    // .then(user => dispatch(logoutSuccess(user)))
   }
-
-  localStorage.setItem('token', '')
 
 }
 
@@ -31,13 +25,20 @@ const login = (credentials)=>{
     axios.post('/api/session', credentials)
     .then( response => response.data)
     .then( token => {
+        localStorage.setItem('token', token);
         return axios.get(`/api/session/${token}`)
         .then(response => response.data)
         .then(user => dispatch(loginSuccess(user)));
     })
+    .catch(()=>dispatch(invalidLogin(loginFail())))
   }
 }
 
+const invalidLogin = () => {
+  return (dispatch) => {
+    dispatch(loginFail())
+  }
+}
 
 const loginSuccess = (user) => ({
   type: LOGIN_SUCCESS,
@@ -48,6 +49,11 @@ const logoutSuccess = () => ({
   type: LOGOUT_SUCCESS
 })
 
+const loginFail = () => ({
+  type: INVALID_LOGIN
+})
+
+
 const authReducer = (state={}, action) => {
   switch(action.type){
     case LOGIN_SUCCESS:
@@ -55,6 +61,9 @@ const authReducer = (state={}, action) => {
       break;
     case LOGOUT_SUCCESS:
       state = Object.assign({}, state, { user: ''})
+      break;
+    case INVALID_LOGIN:
+      state = Object.assign({}, state, { invalidLogin: true })
       break;
   }
   return state;

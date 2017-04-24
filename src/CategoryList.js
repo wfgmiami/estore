@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-
 
 const ProductListItem = ({ product }) => (
 
@@ -11,13 +10,19 @@ const ProductListItem = ({ product }) => (
     <div> { product.name }<Link className="glyphicon glyphicon-shopping-cart pull-right"></Link><span className="pull-right"> ${ product.price }{ " | "}</span></div>
 
   </div>
-
 )
 
-const ProductList = ( { products } ) => {
+const CategoryList = ( props ) => {
+  let filteredProducts;
+  if(props.route.path === '/eyeglasses'){
+    filteredProducts = props.products.filter(product=> product.categoryId === 1);
+  }else{
+    filteredProducts = props.products.filter(product=> product.categoryId === 2);
+  }
+
   return (
     <div className = "row">
-        { products.map( product => {
+        { filteredProducts.map( product => {
         return <ProductListItem key={ product.id } product={ product }/> }) }
     </div>
 )}
@@ -26,4 +31,4 @@ const mapStateToProps = ({ products }) => (
   { products }
 )
 
-export default connect(mapStateToProps)(ProductList)
+export default connect(mapStateToProps)(CategoryList)

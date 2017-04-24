@@ -1,20 +1,35 @@
 import React from 'react';
-import Home from './Home';
-import ProductsPage from './ProductsPage';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import Sidebar from './Sidebar';
+import LoginPage from './LoginPage';
+import Filterbar from './Filterbar';
 
 const App = ({ children, products, user }) => (
 
-  <div className = 'container'>
-    <h3>Best / Worst Products</h3>
-    <Link to='/'>Home</Link> { '|' } {' '}
-    <Link to='/products'>Products ({ products.length })</Link>
+  <div className = "container">
+    <h3 className="well">GRACE SHOPPER</h3>
+
+    <div className="row">
+      <div className="col-xs-2">
+        <Sidebar />
+      </div>
+
+      <div className="col-xs-6">
+        <Filterbar />
+        { children }
+      </div>
+    {/*<Link to='/'>Home</Link> { '|' } {' '}
+    <Link to='/categories'>s ({ products.length })</Link>
     {' | '}
 
     <Link to='/login'>Log In</Link>
-    {' | '} { user ? `Welcome ${ user.name }` : null }
-  { children }
+    {' | '} { user ? `Welcome ${ user.name }` : null }*/}
+      <div className="col-xs-4">
+        <LoginPage />
+      </div>
+    </div>
+
   </div>
   )
 

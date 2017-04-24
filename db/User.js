@@ -1,10 +1,20 @@
-const db = require('./db');
+const conn = require('./conn');
 
-const User = db.define('user',{
-  name: {
-    type: db.Sequelize.STRING
+const User = conn.define('user', {
+  name: conn.Sequelize.STRING,
+  email: {
+    type: conn.Sequelize.STRING,
+    unique: true,
+    validate: {
+			isEmail: true,
+			notEmpty: true
+		}
   },
-  password: db.Sequelize.STRING
-})
+  password: conn.Sequelize.STRING,
+  isAdmin: {
+    type: conn.Sequelize.BOOLEAN,
+    defaultValue: false
+  },
+});
 
 module.exports = User;
