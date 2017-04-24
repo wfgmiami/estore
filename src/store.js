@@ -1,6 +1,5 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import productsReducer,{ loadProducts } from './productsReducer';
-import createLogger from 'redux-logger'
 import thunk from 'redux-thunk';
 import authReducer, { me } from './authReducer';
 
