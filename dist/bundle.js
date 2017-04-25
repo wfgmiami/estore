@@ -15689,83 +15689,134 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var Filterbar = function Filterbar() {
   return _react2.default.createElement(
-    "ul",
-    { className: "nav nav-tabs" },
+    "div",
+    { className: "form-horizontal" },
+    _react2.default.createElement("hr", null),
     _react2.default.createElement(
-      "li",
-      { className: "dropdown" },
+      "div",
+      { className: "col-xs-3" },
       _react2.default.createElement(
-        "a",
-        { className: "dropdown-toggle", href: "#" },
-        "Gender",
-        _react2.default.createElement("span", { className: "caret" })
+        "label",
+        null,
+        "Gender"
       ),
       _react2.default.createElement(
-        "ul",
-        { className: "dropdown-menu" },
+        "select",
+        { className: "form-control" },
         _react2.default.createElement(
-          "li",
+          "option",
           null,
-          _react2.default.createElement(
-            "a",
-            { href: "#" },
-            "Men"
-          )
+          "All"
         ),
         _react2.default.createElement(
-          "li",
+          "option",
           null,
-          _react2.default.createElement(
-            "a",
-            { href: "#" },
-            "Women"
-          )
+          "Man"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Woman"
         )
       )
     ),
     _react2.default.createElement(
-      "li",
-      null,
+      "div",
+      { className: "col-xs-3" },
       _react2.default.createElement(
-        "a",
-        null,
-        "Color"
-      )
-    ),
-    _react2.default.createElement(
-      "li",
-      null,
-      _react2.default.createElement(
-        "a",
+        "label",
         null,
         "Shape"
+      ),
+      _react2.default.createElement(
+        "select",
+        { className: "form-control" },
+        _react2.default.createElement(
+          "option",
+          null,
+          "All"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Rectangle"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Square"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Oval"
+        )
       )
     ),
     _react2.default.createElement(
-      "li",
-      null,
+      "div",
+      { className: "col-xs-3" },
       _react2.default.createElement(
-        "a",
+        "label",
         null,
         "Material"
+      ),
+      _react2.default.createElement(
+        "select",
+        { className: "form-control" },
+        _react2.default.createElement(
+          "option",
+          null,
+          "All"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Plastic"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Wood"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Metal"
+        )
       )
     ),
     _react2.default.createElement(
-      "li",
-      null,
+      "div",
+      { className: "col-xs-3" },
       _react2.default.createElement(
-        "a",
+        "label",
         null,
-        "Rating"
-      )
-    ),
-    _react2.default.createElement(
-      "li",
-      null,
+        "Color"
+      ),
       _react2.default.createElement(
-        "a",
-        null,
-        "Price"
+        "select",
+        { className: "form-control" },
+        _react2.default.createElement(
+          "option",
+          null,
+          "All"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Black"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "White"
+        ),
+        _react2.default.createElement(
+          "option",
+          null,
+          "Brown"
+        )
       )
     )
   );

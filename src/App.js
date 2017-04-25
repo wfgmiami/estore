@@ -19,12 +19,6 @@ const App = ({ children, products, user }) => (
         <Filterbar />
         { children }
       </div>
-    {/*<Link to='/'>Home</Link> { '|' } {' '}
-    <Link to='/categories'>s ({ products.length })</Link>
-    {' | '}
-
-    <Link to='/login'>Log In</Link>
-    {' | '} { user ? `Welcome ${ user.name }` : null }*/}
       <div className="col-xs-4">
         <LoginPage />
       </div>

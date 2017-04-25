@@ -22,6 +22,7 @@ const Sidebar = (props) => {
       </div>
 
       <hr />
+
     </div>
   );
 }

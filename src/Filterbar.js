@@ -2,22 +2,51 @@ import React from 'react';
 
 const Filterbar = () => (
 
-  <ul className="nav nav-tabs">
+  <div className="form-horizontal">
+    <hr />
+    <div className="col-xs-3">
+      <label>Gender</label>
+      <select className="form-control">
+        <option>All</option>
+        <option>Man</option>
+        <option>Woman</option>
+      </select>
+    </div>
 
-    <li className="dropdown"><a className="dropdown-toggle" href="#">Gender<span className="caret"></span></a>
-      <ul className="dropdown-menu">
-        <li><a href="#">Men</a></li>
-        <li><a href="#">Women</a></li>
-      </ul>
-    </li>
 
-      <li><a>Color</a></li>
-      <li><a>Shape</a></li>
-      <li><a>Material</a></li>
-      <li><a>Rating</a></li>
-      <li><a>Price</a></li>
+    <div className="col-xs-3">
+      <label>Shape</label>
+      <select className="form-control">
+        <option>All</option>
+        <option>Rectangle</option>
+        <option>Square</option>
+        <option>Oval</option>
+      </select>
+    </div>
 
-  </ul>
+
+   <div className="col-xs-3">
+      <label>Material</label>
+      <select className="form-control">
+        <option>All</option>
+        <option>Plastic</option>
+        <option>Wood</option>
+        <option>Metal</option>
+      </select>
+    </div>
+
+
+    <div className="col-xs-3">
+     <label>Color</label>
+      <select className="form-control">
+        <option>All</option>
+        <option>Black</option>
+        <option>White</option>
+        <option>Brown</option>
+      </select>
+    </div>
+
+  </div>
 )
 
 export default Filterbar;

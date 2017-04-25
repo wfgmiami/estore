@@ -3,6 +3,8 @@ const db = require('./conn');
 const User = require( './User' );
 const Product = require( './Product' );
 const Category = require( './Category');
+const Attribute = require('./Attribute');
+const Attributevalue = require('./Attributevalue');
 
 const users = [
   { name: 'Arum', email: 'arum@google.com', password: '1234', isAdmin: false },
@@ -13,6 +15,13 @@ const users = [
 
 const categories = [
   {name: 'EYEGLASSES'}, {name: 'SUNGLASSES'}
+]
+const attributes = [
+  {name: 'Gender'}, {name: 'Shape'}, {name:'Material'}, {name:'Color'}
+]
+
+const attributeValues = [
+  {name:'Man'}, {name:'Woman'},{name: 'Rectangle'}, {name: 'Squre'}, {name:'Oval'}, {name:'Plastic'},{name:'Wood'}, {name:'Metal'}, {name:'Black'},{name:'White'}, {name:'Brown'}
 ]
 
 const products = [
@@ -40,6 +49,8 @@ const seed = () => {
   .then(() => User.bulkCreate(users))
   .then(() => Category.bulkCreate(categories))
   .then(() => Product.bulkCreate(products))
+  .then(() => Attribute.bulkCreate(attributes))
+  .then(() => Attributevalue.bulkCreate(attributeValues))
   .catch((error) => console.log(error))
 }
 
