@@ -22,8 +22,13 @@ const ProductList = ( { products } ) => {
     </div>
 )}
 
-const mapStateToProps = ({ products }) => (
-  { products }
-)
+const mapStateToProps = (store) => {
+  return {
+    products: store.products.allProducts
+  }
+}
+
 
 export default connect(mapStateToProps)(ProductList)
+
+

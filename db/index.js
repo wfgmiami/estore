@@ -50,6 +50,8 @@ module.exports = {
     Order,
     Category,
     Attribute,
-    Attributevalue
+    Attributevalue,
+    CategoryAttributeValue,
+    ProductAttributeValue
   }
 }

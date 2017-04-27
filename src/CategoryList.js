@@ -27,8 +27,10 @@ const CategoryList = ( props ) => {
     </div>
 )}
 
-const mapStateToProps = ({ products }) => (
-  { products }
-)
+const mapStateToProps = (store) => {
+  return {
+    products: store.products.allProducts
+  }
+}
 
 export default connect(mapStateToProps)(CategoryList)

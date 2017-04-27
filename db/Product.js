@@ -7,7 +7,7 @@ const Product = conn.define('product', {
     allowNull: false
   },
   description: {
-    type: conn.Sequelize.STRING,
+    type: conn.Sequelize.TEXT,
     allowNull: false
   },
   price: {
